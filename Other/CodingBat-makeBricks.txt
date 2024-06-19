@@ -1,0 +1,24 @@
+//Practice done in Java
+//Link: https://codingbat.com/prob/p183562
+
+//Solution Code
+public boolean makeBricks(int small, int big, int goal) {
+  //Base variables for the output of the problem
+  boolean enoughBig = false;
+  boolean enoughSmall = false;
+  boolean totalEnough = false;
+  
+  //preliminary base case.
+  int tail = goal % 5;
+  int body = goal / 5;
+  if(small >= tail){enoughSmall = true;}
+  if(big >= body){enoughBig = true;}
+  //Edge cases
+  if(enoughSmall && enoughBig){totalEnough = true;}
+  else{
+    int tempRemainder = goal - big * 5;
+    if(tempRemainder <= small && tempRemainder > 0){totalEnough = true;}
+  }
+  
+  return totalEnough;
+}

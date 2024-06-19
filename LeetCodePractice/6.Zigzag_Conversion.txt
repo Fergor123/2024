@@ -1,0 +1,42 @@
+//Practice is done in Java
+//Link: https://leetcode.com/problems/zigzag-conversion/description/
+
+//Solution Code
+class Solution {
+    public String convert(String s, int numRows) {
+        //Initialization
+        String resultString = "";
+        ArrayList<String> myStrings = new ArrayList<String>();
+        for(int i = 0; i < numRows; i++){myStrings.add("");}
+
+        //Behavioral Variables
+        int strLength = s.length();
+        int k = 0;
+        boolean ladder = false;
+
+        for(int i = 0; i < strLength; i++){
+            //Character Adder
+            String temp = myStrings.get(k);
+            temp += s.charAt(i);
+            myStrings.set(k, temp);
+            
+            //Row Selector
+            if(!(numRows == 1)){
+                if(ladder){
+                    k--;
+                    if(k == 0){ladder = false;}
+                }else{
+                    k++;
+                    if(k == (numRows - 1)){ladder = true;}
+                }
+            }
+        }
+
+        //String Reassembler
+        for(String strPart : myStrings){resultString += strPart;}
+
+        return resultString;
+        //O(n) runtime where n is length of string
+
+    }
+}
